@@ -7,6 +7,7 @@ Initially set up for the article for entickler.de [Kommandozeilen-Apps mit Go](h
 Features:
 - Flags with [POSIX standard format](https://www.gnu.org/prep/standards/html_node/Command_002dLine-Interfaces.html)
 - Binary release with [Goreleaser](https://goreleaser.com/) and [Github Actions](https://github.com/features/actions)
+- Usage of [Cobra](https://github.com/spf13/cobra) library (see branch `cobra`)
 
 ## Build it
 
