@@ -1,4 +1,4 @@
-module crossnative/progo
+module crossnative/progo-cli
 
 go 1.23
 
