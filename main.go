@@ -1,18 +1,17 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
-
-	flag "github.com/spf13/pflag"
 
 	"github.com/jboursiquot/go-proverbs"
 )
 
 func main() {
 	// 1. count Flag definieren
-	var count = flag.IntP("count", "c", 1, "Count of proverbs to print.")
-	var verbose = flag.BoolP("verbose", "v", false, "verbose output")
+	var count = flag.Int("count", 1, "Count of proverbs to print.")
+	var verbose = flag.Bool("verbose", false, "verbose output")
 
 	// 2. Flags parsen
 	flag.Parse()
