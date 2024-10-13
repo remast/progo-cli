@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"os"
 
 	"github.com/jboursiquot/go-proverbs"
 	"github.com/spf13/cobra"
@@ -23,6 +24,15 @@ var printCmd = &cobra.Command{
 		if err != nil {
 			// 1a. Return mit Fehler
 			return err
+		}
+
+		verbose, err := cmd.Flags().GetBool("verbose")
+		if err != nil {
+			// 1a. Return mit Fehler
+			return err
+		}
+		if verbose {
+			fmt.Fprintf(os.Stdout, "Printing %v proverbs:\n", count)
 		}
 
 		// 2. Gewünschte Anzahl Proverbs ausgeben
