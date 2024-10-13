@@ -9,9 +9,10 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "progo-cli",
-	Short: "Sample Proverb app.",
+	Short: "Go Proverbs command line app.",
 	Long: `Nifty tool that brings the Proverbs
 to your terminal.`,
+	Version: "v0.0.2",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
