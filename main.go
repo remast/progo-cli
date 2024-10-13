@@ -15,13 +15,13 @@ import (
 func main() {
 	// 1. Flags definieren
 	var count int
-	flag.IntVarP(&count, "c", "count", 1, "Count of proverbs to print.")
+	flag.IntVarP(&count, "count", "c", 1, "Count of proverbs to print.")
 
 	var verbose bool
-	flag.BoolVarP(&verbose, "v", "verbose", false, "verbose output")
+	flag.BoolVarP(&verbose, "verbose", "v", false, "verbose output")
 
 	var jsonFormat bool
-	flag.BoolVarP(&jsonFormat, "j", "json", false, "Count of proverbs to print.")
+	flag.BoolVarP(&jsonFormat, "json", "j", false, "Count of proverbs to print.")
 
 	// 2. Flags parsen
 	flag.Parse()
