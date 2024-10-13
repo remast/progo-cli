@@ -16,7 +16,7 @@ var printCmd = &cobra.Command{
 	Use:   "print",
 	Short: "Prints some proverbs",
 	Long:  `Nifty tool that prints the Proverbs in your terminal.`,
-	Args:  cobra.MaximumNArgs(2),
+	Args:  cobra.MatchAll(cobra.MaximumNArgs(2), cobra.OnlyValidArgs),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// 1. count Flag abfragen
 		count, err := cmd.Flags().GetInt("count")
@@ -29,9 +29,11 @@ var printCmd = &cobra.Command{
 		for i := 0; i < count; i++ {
 			if jsonOutput {
 				writer := bytes.NewBufferString("")
-				json.NewEncoder(writer).Encode(proverbs.Random())
+				err := json.NewEncoder(writer).Encode(proverbs.Random())
+				if err != nil {
+					return err
+				}
 				fmt.Println(writer)
-
 			} else {
 				fmt.Println(proverbs.Random().Saying)
 			}
