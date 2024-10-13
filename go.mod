@@ -1,6 +1,6 @@
 module crossnative/progo
 
-go 1.22
+go 1.23
 
 require (
 	github.com/jboursiquot/go-proverbs v0.0.2
