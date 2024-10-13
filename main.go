@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/jboursiquot/go-proverbs"
@@ -21,7 +22,6 @@ func main() {
 	var jsonFormat bool
 	flag.BoolVar(&jsonFormat, "json", false, "Count of proverbs to print.")
 
-	
 	// 2. Flags parsen
 	flag.Parse()
 
@@ -33,7 +33,10 @@ func main() {
 	for i := 0; i < count; i++ {
 		if jsonFormat {
 			writer := bytes.NewBufferString("")
-			json.NewEncoder(writer).Encode(proverbs.Random())
+			err := json.NewEncoder(writer).Encode(proverbs.Random())
+			if err != nil {
+				log.Fatalf("Could not encode json (%v)", err)
+			}
 			fmt.Println(writer)
 		} else {
 			fmt.Println(proverbs.Random().Saying)
