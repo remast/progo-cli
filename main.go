@@ -8,6 +8,7 @@ import (
 	"log"
 
 	"github.com/jboursiquot/go-proverbs"
+	"github.com/skratchdot/open-golang/open"
 )
 
 func main() {
@@ -24,17 +25,21 @@ func main() {
 	// a) watch Subcommand
 	watchCommand := flag.NewFlagSet("watch", flag.ExitOnError)
 
-	// 2. Flags parsen
-	flag.Parse()
-
+	// 2. Subcommands verarbeiten
 	subcommand := flag.Args()[0]
 
 	switch subcommand {
 	case "print":
+		// a) Flags parsen
 		printCommand.Parse(flag.Args()[1:])
+
+		// b) Subcommand auführen
 		runPrintCommand(count, jsonFormat)
 	case "watch":
+		// a) Flags parsen
 		watchCommand.Parse(flag.Args()[1:])
+
+		// b) Subcommand auführen
 		runWatchCommand()
 	default:
 		log.Fatal("No matching subcommand found.")
@@ -58,5 +63,5 @@ func runPrintCommand(count int, jsonFormat bool) {
 }
 
 func runWatchCommand() {
-
+	open.Run(proverbs.Random().Link)
 }
