@@ -14,7 +14,7 @@ var jsonOutput bool
 // printCmd represents the print command
 var printCmd = &cobra.Command{
 	Use:   "print",
-	Short: "Prints proverbs",
+	Short: "Prints some proverbs",
 	Long:  `Nifty tool that prints the Proverbs in your terminal.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// 1. count Flag abfragen

@@ -8,10 +8,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// openCmd represents the open command
+// watchCmd represents the watch command
 var watchCmd = &cobra.Command{
 	Use:   "watch",
-	Short: "Watch the video for the proverb",
+	Short: "Shows the video of a random proverb",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
