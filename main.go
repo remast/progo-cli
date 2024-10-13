@@ -6,30 +6,43 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"os"
 
 	"github.com/jboursiquot/go-proverbs"
 )
 
 func main() {
 	// 1. Flags definieren
-	var count int
-	flag.IntVar(&count, "count", 1, "Count of proverbs to print.")
+	// a) print Subcommand
+	printCommand := flag.NewFlagSet("print", flag.ExitOnError)
 
-	var verbose bool
-	flag.BoolVar(&verbose, "verbose", false, "verbose output")
+	var count int
+	printCommand.IntVar(&count, "count", 1, "Count of proverbs to print.")
 
 	var jsonFormat bool
-	flag.BoolVar(&jsonFormat, "json", false, "Count of proverbs to print.")
+	printCommand.BoolVar(&jsonFormat, "json", false, "Count of proverbs to print.")
+
+	// a) watch Subcommand
+	watchCommand := flag.NewFlagSet("watch", flag.ExitOnError)
 
 	// 2. Flags parsen
 	flag.Parse()
 
-	if verbose {
-		fmt.Fprintf(os.Stdout, "Printing %v proverbs:\n", count)
+	subcommand := flag.Args()[0]
+
+	switch subcommand {
+	case "print":
+		printCommand.Parse(flag.Args()[1:])
+		runPrintCommand(count, jsonFormat)
+	case "watch":
+		watchCommand.Parse(flag.Args()[1:])
+		runWatchCommand()
+	default:
+		log.Fatal("No matching subcommand found.")
 	}
 
-	// 3. Gewünschte Anzahl Proverbs ausgeben
+}
+
+func runPrintCommand(count int, jsonFormat bool) {
 	for i := 0; i < count; i++ {
 		if jsonFormat {
 			writer := bytes.NewBufferString("")
@@ -42,5 +55,8 @@ func main() {
 			fmt.Println(proverbs.Random().Saying)
 		}
 	}
+}
+
+func runWatchCommand() {
 
 }
