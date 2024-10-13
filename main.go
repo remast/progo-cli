@@ -13,7 +13,7 @@ import (
 
 func main() {
 	// 1. Flags definieren
-	// a) print Subcommand
+	// a) print Command
 	printCommand := flag.NewFlagSet("print", flag.ExitOnError)
 
 	var count int
@@ -22,13 +22,13 @@ func main() {
 	var jsonFormat bool
 	printCommand.BoolVar(&jsonFormat, "json", false, "Count of proverbs to print.")
 
-	// a) watch Subcommand
+	// a) watch Command
 	watchCommand := flag.NewFlagSet("watch", flag.ExitOnError)
 
-	// 2. Subcommands verarbeiten
-	subcommand := flag.Args()[0]
+	// 2. Commands verarbeiten
+	command := flag.Args()[0]
 
-	switch subcommand {
+	switch command {
 	case "print":
 		// a) Flags parsen
 		printCommand.Parse(flag.Args()[1:])
