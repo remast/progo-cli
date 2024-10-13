@@ -16,6 +16,7 @@ var printCmd = &cobra.Command{
 	Use:   "print",
 	Short: "Prints some proverbs",
 	Long:  `Nifty tool that prints the Proverbs in your terminal.`,
+	Args:  cobra.MaximumNArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
 		// 1. count Flag abfragen
 		count, err := cmd.Flags().GetInt("count")
