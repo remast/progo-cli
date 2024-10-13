@@ -8,7 +8,7 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "progo",
+	Use:   "progo-cli",
 	Short: "Sample Proverb app.",
 	Long: `Nifty tool that brings the Proverbs
 to your terminal.`,
