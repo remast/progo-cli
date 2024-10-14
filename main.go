@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
 	flag "github.com/spf13/pflag"
 
@@ -19,6 +20,14 @@ func main() {
 
 	var verbose bool
 	flag.BoolVarP(&verbose, "verbose", "v", false, "verbose output")
+	//flag.CommandLine.MarkDeprecated("json", "JSON is old")
+	//flag.CommandLine.MarkHidden("verbose")
+
+	var durationFlag time.Duration
+	flag.DurationVarP(&durationFlag, "duration", "d", 3*time.Minute, "my duration")
+
+	var stringArrayFlag []string
+	flag.StringArrayVarP(&stringArrayFlag, "stringArray", "a", []string{}, "array of strings")
 
 	var jsonFormat bool
 	flag.BoolVarP(&jsonFormat, "json", "j", false, "Count of proverbs to print.")
@@ -26,8 +35,13 @@ func main() {
 	// 2. Flags parsen
 	flag.Parse()
 
+	fmt.Fprintf(os.Stdout, "Printing %v proverbs:\n", count)
+
+	fmt.Printf("durationFlag %v:\n", durationFlag)
+	fmt.Printf("stringArrayFlag %v:\n", stringArrayFlag)
+
 	if verbose {
-		fmt.Fprintf(os.Stdout, "Printing %v proverbs:\n", count)
+		fmt.Printf("Printing %v proverbs:\n", count)
 	}
 
 	// 3. Gewünschte Anzahl Proverbs ausgeben
