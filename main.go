@@ -26,6 +26,7 @@ func main() {
 	watchCommand := flag.NewFlagSet("watch", flag.ExitOnError)
 
 	// 2. Commands verarbeiten
+	flag.Parse()
 	command := flag.Args()[0]
 
 	switch command {
