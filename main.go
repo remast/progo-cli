@@ -29,7 +29,7 @@ func main() {
 	}
 
 	// 3. Gewünschte Anzahl Proverbs ausgeben
-	for i := 0; i < count; i++ {
+	for range count {
 		if jsonFormat {
 			err := json.NewEncoder(os.Stdout).Encode(proverbs.Random())
 			if err != nil {
