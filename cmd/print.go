@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -38,12 +37,10 @@ var printCmd = &cobra.Command{
 		// 2. Gewünschte Anzahl Proverbs ausgeben
 		for range count {
 			if jsonOutput {
-				writer := bytes.NewBufferString("")
-				err := json.NewEncoder(writer).Encode(proverbs.Random())
+				err := json.NewEncoder(os.Stdout).Encode(proverbs.Random())
 				if err != nil {
 					return err
 				}
-				fmt.Println(writer)
 			} else {
 				fmt.Println(proverbs.Random().Saying)
 			}
