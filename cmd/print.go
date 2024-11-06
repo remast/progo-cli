@@ -36,7 +36,7 @@ var printCmd = &cobra.Command{
 		}
 
 		// 2. Gewünschte Anzahl Proverbs ausgeben
-		for i := 0; i < count; i++ {
+		for range count {
 			if jsonOutput {
 				writer := bytes.NewBufferString("")
 				err := json.NewEncoder(writer).Encode(proverbs.Random())
