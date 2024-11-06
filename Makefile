@@ -21,3 +21,6 @@ clean:
 	echo "Cleaning cli"
 	go clean
 	rm -rf build
+
+goreleaser-snapshot:
+	goreleaser release --snapshot --clean 
