@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"encoding/json"
 	"flag"
 	"fmt"
@@ -32,12 +31,10 @@ func main() {
 	// 3. Gewünschte Anzahl Proverbs ausgeben
 	for i := 0; i < count; i++ {
 		if jsonFormat {
-			writer := bytes.NewBufferString("")
-			err := json.NewEncoder(writer).Encode(proverbs.Random())
+			err := json.NewEncoder(os.Stdout).Encode(proverbs.Random())
 			if err != nil {
 				log.Fatalf("Could not encode json (%v)", err)
 			}
-			fmt.Println(writer)
 		} else {
 			fmt.Println(proverbs.Random().Saying)
 		}
